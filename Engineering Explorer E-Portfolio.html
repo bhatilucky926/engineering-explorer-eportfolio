@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Engineering Explorer — E-Portfolio | Lakki</title>
+<style>
+:root{--navy:#16213e;--blue:#2563eb;--soft:#eaf2ff;--bg:#f4f7fb;--card:#fff;--text:#1f2937;--muted:#64748b;--line:#cbd5e1;--head:#16213e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1220;--card:#131c2f;--soft:#1b2a47;--text:#e5e7eb;--muted:#94a3b8;--line:#334155;--head:#bfdbfe;color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px;height:auto}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:#16213e;display:flex;gap:6px;align-items:center;padding:10px 4%;overflow-x:auto;white-space:nowrap}
+nav b{color:#fff;margin-right:auto;font-size:15px}
+nav a{color:#cfe0ff;text-decoration:none;font-size:14px;padding:6px 12px;border-radius:999px}
+nav a:hover{background:rgba(255,255,255,.15);color:#fff}
+.hero{background:linear-gradient(135deg,#16213e,#2563eb);color:#fff;padding:60px 6% 90px}
+.hero-in,.container{max-width:1100px;margin:0 auto}
+.badge{display:inline-block;background:rgba(255,255,255,.16);padding:8px 14px;border-radius:999px;margin-bottom:16px;font-size:14px}
+.hero h1{font-size:clamp(30px,6vw,48px);margin:0 0 10px;line-height:1.15}
+.hero p{font-size:18px;max-width:760px;margin:6px 0}
+.info{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.info span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:8px 14px;border-radius:12px;font-size:15px}
+.info b{color:#bfdbfe}
+.container{padding:0 20px 40px}
+.profile{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:-50px}
+.card{background:var(--card);border-radius:18px;padding:26px;box-shadow:0 10px 30px rgba(15,23,42,.1)}
+.card h2,.card h3{margin-top:0;color:var(--head)}
+.stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat{flex:1;min-width:90px;background:var(--soft);border-radius:12px;padding:12px;text-align:center}
+.stat b{display:block;font-size:26px;color:var(--blue)}
+.stat small{color:var(--muted)}
+.sec{margin-top:44px}
+.sec>h2{color:var(--head);margin:0 0 4px;font-size:28px}
+.sub{color:var(--muted);margin:0 0 18px}
+.btn{display:inline-block;background:var(--blue);color:#fff;padding:10px 18px;border-radius:10px;cursor:pointer;font-size:15px}
+details.topic{border:1px solid var(--line);border-radius:12px;margin:10px 0;background:var(--card);overflow:hidden}
+summary{cursor:pointer;padding:14px 18px;font-weight:700;font-size:18px;color:var(--head);background:var(--soft);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"＋";float:right;color:var(--blue)}
+details[open] summary::after{content:"－"}
+.tbody{padding:6px 20px 16px}
+.tbody h4{color:var(--blue);margin:14px 0 4px}
+.viva{background:var(--soft);border-radius:10px;padding:8px 16px;margin-top:12px}
+pre{background:#0f172a;color:#e2e8f0;padding:14px 16px;border-radius:12px;overflow-x:auto;font-size:13.5px;line-height:1.5;margin:10px 0}
+.module{margin:18px 0;padding:24px;border-left:6px solid var(--blue);background:var(--card);border-radius:14px;box-shadow:0 6px 20px rgba(15,23,42,.08)}
+.module.done{border-left-color:#16a34a}
+.num{font-size:13px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:1px}
+.module h3{margin:4px 0 8px;color:var(--head);font-size:22px}
+.status{float:right;font-size:12px;padding:4px 10px;border-radius:999px;background:#dcfce7;color:#166534}
+.status.na{background:#f1f5f9;color:#475569}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+.slot{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px;text-align:center}
+.slot img,.slot video{width:100%;border-radius:10px;display:block;max-height:300px;object-fit:cover;cursor:zoom-in}
+.cap{margin:8px 2px 2px;font-size:13.5px;color:var(--muted)}
+.empty{color:var(--muted);font-style:italic}
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:99;flex-direction:column}
+#lightbox img{max-width:94%;max-height:86%;border-radius:8px}
+#lightbox p{color:#fff}
+footer{background:#16213e;color:#dbeafe;text-align:center;padding:30px 20px;margin-top:40px}
+footer p{margin:4px 0}
+@media(max-width:700px){.profile{grid-template-columns:1fr}.status{float:none;display:inline-block;margin-bottom:6px}}
+</style>
+</head>
+<body>
+<nav><b>Lakki • E-Portfolio</b><a href="#notes">Notes</a><a href="#journey">Learning Journey</a><a href="#gallery">Gallery</a></nav>
+
+<header class="hero"><div class="hero-in">
+<div class="badge">E-PORTFOLIO • Engineering Explorer</div>
+<h1>Engineering Explorer</h1>
+<p>Hands-on practicals with Arduino UNO: LEDs, sensors, Bluetooth and app control.</p>
+<div class="info">
+<span><b>Name:</b> Lakki</span>
+<span><b>Roll No:</b> 2K26CSU01AN049</span>
+<span><b>Program:</b> B.Tech CSE (AI &amp; ML)</span>
+<span><b>University:</b> Manav Rachna University</span>
+</div></div></header>
+
+<main class="container">
+<section class="profile">
+<div class="card"><h2>About This Portfolio</h2><p>A structured record of my learning in Engineering Explorer: embedded platforms, sensors, communication, app integration, cloud, 3D printing and project work. Each practical has its code, photos and videos as proof of work.</p></div>
+<div class="card"><h2>At a Glance</h2><div class="stats">
+<div class="stat"><b>11</b><small>Topics</small></div>
+<div class="stat"><b id="cDone">5</b><small>Practicals done</small></div>
+<div class="stat"><b id="cMedia">0</b><small>Photos/Videos</small></div></div></div>
+</section>
+
+<section class="sec" id="notes"><h2>📄 Notes</h2><p class="sub">Study notes for all 11 topics. Tap a topic to open it.</p><div id="notesBox"></div></section>
+
+<section class="sec" id="journey"><h2>🚀 Learning Journey</h2><p class="sub">Topic-wise work with evidence for each practical.</p><div id="modules"></div></section>
+
+<section class="sec" id="gallery"><h2>🎬 Practical Videos</h2><p class="sub">Working demonstrations of my circuits.</p>
+<div class="card"><div class="grid" id="videoGrid"></div><p class="empty" id="noV">No videos yet. Add some below.</p></div>
+<h2 style="margin-top:36px">🖼️ Practical Photos</h2><p class="sub">Circuits, wiring and code. Tap a photo to enlarge.</p>
+<div class="card"><div class="grid" id="photoGrid"></div><p class="empty" id="noP">No photos yet. Add some below.</p></div>
+<div class="card" style="margin-top:20px;text-align:center"><h3>➕ Add Photo / Video</h3>
+<p class="sub">Pick files from your device to show them here (they stay only until the page is refreshed).</p>
+<label class="btn" for="addMedia">Choose Photo / Video</label>
+<input type="file" id="addMedia" accept="image/*,video/*" multiple style="display:none"></div>
+</section>
+</main>
+
+<div id="lightbox" onclick="this.style.display='none'"><img id="lbImg" alt=""><p id="lbCap"></p></div>
+<footer><p><strong>Engineering Explorer E-Portfolio</strong></p><p>Lakki • Roll No. 2K26CSU01AN049 • B.Tech CSE (AI &amp; ML)</p><p>Manav Rachna University</p></footer>
+
+<script>
+var NOTES=[
+{t:"1. Basic Introduction to Embedded Platform",p:["An embedded system is a small computer built into a device for one dedicated job. Arduino bundles a microcontroller, power circuit, USB and pins on one board.","Arduino Uno: ATmega328P, 14 digital pins (6 PWM), 6 analog inputs, 16 MHz, 32 KB flash, 2 KB SRAM, 5 V.","setup() runs once; loop() repeats forever."],c:"void setup() {\n  Serial.begin(9600);\n  Serial.println(\"Hello, Embedded World!\");\n}\nvoid loop() {}",v:["Microcontroller vs microprocessor?","Why setup() and loop()?","Which pins support PWM?"]},
+{t:"2. LED Blinking in Various Patterns",p:["LED has anode (+, longer leg) and cathode (−, shorter leg). Always use a 220–330 Ω resistor in series.","Patterns: blink/alternate, chaser, and fade using PWM (analogWrite 0–255)."],c:"int leds[] = {2, 3, 4};\nvoid setup() {\n  for (int i = 0; i < 3; i++) pinMode(leds[i], OUTPUT);\n}\nvoid loop() {\n  for (int i = 0; i < 3; i++) {\n    digitalWrite(leds[i], HIGH);\n    delay(300);\n    digitalWrite(leds[i], LOW);\n  }\n}",v:["Why a resistor with an LED?","What is PWM?","How does an array shorten code?"]},
+{t:"3. Analog Sensor Interfacing",p:["The ADC converts 0–5 V into 0–1023 (10-bit), about 4.88 mV per step.","Voltage = analogRead(pin) × 5.0 / 1023. Common sensors: LDR, LM35, potentiometer, soil moisture, MQ gas.","Resistive sensors are read through a voltage divider."],c:"void setup() { Serial.begin(9600); }\nvoid loop() {\n  int raw = analogRead(A0);\n  float tempC = raw * 5.0 / 1023.0 * 100.0; // LM35\n  Serial.println(tempC);\n  delay(500);\n}",v:["Range of analogRead()?","Why a voltage divider with an LDR?","How to improve ADC resolution?"]},
+{t:"4. LCD and Bluetooth Interfacing",p:["16×2 LCD uses the LiquidCrystal library in 4-bit mode (RS, E, D4–D7); a 10k pot sets contrast.","HC-05 talks over UART (9600 baud, PIN 1234 or 0000). SoftwareSerial frees USB for debugging.","HC-05 RX is 3.3 V, so use a 1k/2k divider on the Arduino TX line."],c:"#include <LiquidCrystal.h>\n#include <SoftwareSerial.h>\nLiquidCrystal lcd(12, 11, 5, 4, 3, 2);\nSoftwareSerial bt(8, 9);\nvoid setup() { lcd.begin(16, 2); bt.begin(9600); }\nvoid loop() {\n  if (bt.available()) {\n    lcd.clear();\n    lcd.print(bt.read());\n  }\n}",v:["Why 4-bit mode?","What is baud rate?","Why SoftwareSerial?"]},
+{t:"5. IR and Ultrasonic Sensor Integration",p:["IR sensor: reflected infrared, range about 2–30 cm, digital output (LOW = obstacle).","HC-SR04: time of flight of 40 kHz sound, range about 2–400 cm. Distance = time × 0.034 / 2."],c:"const int trig = 9, echo = 10;\nvoid setup() {\n  pinMode(trig, OUTPUT); pinMode(echo, INPUT);\n  Serial.begin(9600);\n}\nvoid loop() {\n  digitalWrite(trig, LOW); delayMicroseconds(2);\n  digitalWrite(trig, HIGH); delayMicroseconds(10);\n  digitalWrite(trig, LOW);\n  long t = pulseIn(echo, HIGH);\n  Serial.println(t * 0.034 / 2);\n  delay(300);\n}",v:["Why divide time by 2?","Speed of sound in cm/µs?","IR vs ultrasonic use cases?"]},
+{t:"6. Basic of App Building",p:["MIT App Inventor is a free, block-based tool that builds an installable APK.","Designer: drag components. Blocks: snap events to actions. Test with the AI2 Companion, then Build > Android App (.apk).","Concepts: event-driven programming, variables, UI components, permissions."],v:["What is an APK?","What is event-driven programming?","Name three Designer components."]},
+{t:"7. App Integration with Embedded Platform",p:["Phone and Arduino exchange data over Bluetooth. Use BluetoothClient and a ListPicker to choose the paired HC-05.","Buttons send characters; Arduino reads them with bt.read(). Both sides must use the same baud rate."],c:"#include <SoftwareSerial.h>\nSoftwareSerial bt(8, 9);\nvoid setup() { pinMode(13, OUTPUT); bt.begin(9600); }\nvoid loop() {\n  if (bt.available()) {\n    char c = bt.read();\n    if (c == '1') digitalWrite(13, HIGH);\n    if (c == '0') digitalWrite(13, LOW);\n  }\n}",v:["What if baud rates differ?","How to show sensor values in the app?","Why pair HC-05 first?"]},
+{t:"8. Cloud Integration with App",p:["IoT connects devices to the internet; data goes to the cloud and is viewed from anywhere.","Platforms: Blynk (dashboard), ThingSpeak (live graphs), Firebase (realtime database). Uno has no Wi-Fi, so use ESP32/ESP8266.","Protocols: HTTP and MQTT. Never share your API key publicly."],v:["What is IoT?","Why ESP32 instead of Uno?","HTTP vs MQTT?"]},
+{t:"9. Basic of 3D Printing",p:["3D printing is additive manufacturing. FDM melts filament (PLA, ABS, PETG) through a nozzle (PLA about 200 °C, bed about 60 °C).","Layer height (e.g. 0.2 mm), infill (15–20%), supports for overhangs. STL is the model; G-code is the printer's instructions.","Tools: Tinkercad, Fusion 360, Cura, PrusaSlicer."],v:["Role of a slicer?","PLA vs ABS?","What are supports for?"]},
+{t:"10. Project",p:["Combine sensors, display, Bluetooth/app, cloud and a 3D-printed body to solve a simple, useful problem.","Ideas: smart dustbin, Bluetooth car, weather monitor, automatic street light, parking assistant.","Report: Aim, Components, Block diagram, Circuit, Code, Working, Output, Conclusion, Future scope."],v:["Does every module work alone?","Is the wiring neat and labelled?","Can you explain every line of code?"]},
+{t:"11. Seminar / Presentation",p:["One idea per slide, big text, more diagrams than paragraphs. Keep a live demo or video as backup.","Practise to fit 5–8 minutes. Expect: why this component, what problem it solves, biggest difficulty."],v:["Slides saved on pen drive and email?","Hardware and cables packed?","Team roles decided?"]}
+];
+
+/* Add your media here: put files in images/ and videos/ folders, or use data URIs.
+   P("images/my-photo.jpg","Caption") */
+var P=function(f,c){return{src:f,caption:c}},V=function(f,c){return{src:f,caption:c}};
+
+var MODULES=[
+{n:"01",cat:"Foundation",title:"Basic Introduction to Embedded Platform",done:true,learn:["Arduino UNO board: microcontroller, digital/analog pins, power pins, USB port","Arduino IDE: board selection, writing, compiling and uploading a sketch","Structure of a sketch: setup() and loop()"],photos:[],videos:[]},
+{n:"02",cat:"Output Control",title:"LED Blinking in Various Patterns",done:true,learn:["Digital output with pinMode() and digitalWrite()","Timing with delay() and a current-limiting resistor","Controlling several LEDs using an array and a for loop"],code:[{title:"Single LED blink (pin 10)",text:"int LED = 10;\nvoid setup() {\n  pinMode(LED, OUTPUT);\n}\nvoid loop() {\n  digitalWrite(LED, HIGH);\n  delay(1000);\n  digitalWrite(LED, LOW);\n  delay(1000);\n}"},{title:"4 LEDs in sequence (pins 8–11)",text:"int led[] = {8, 9, 10, 11};\nvoid setup() {\n  for (int i = 0; i < 4; i++) pinMode(led[i], OUTPUT);\n}\nvoid loop() {\n  for (int i = 0; i < 4; i++) {\n    digitalWrite(led[i], HIGH);\n    delay(1000);\n  }\n  for (int i = 0; i < 4; i++) digitalWrite(led[i], LOW);\n  delay(1000);\n}"}],photos:[],videos:[]},
+{n:"03",cat:"Sensors",title:"Analog Sensor Interfacing",done:true,learn:["Reading an analog voltage on A0 with a potentiometer","10-bit ADC: values from 0 to 1023","Live readings on the Serial Monitor, and controlling an LED with them"],photos:[],videos:[]},
+{n:"04",cat:"Display & Communication",title:"LCD and Bluetooth Interfacing With Platform",done:true,learn:["HC-05 module: VCC, GND, TXD, RXD connections","Pairing with a phone and sending commands via a Bluetooth controller app","Switching an LED on/off wirelessly"],photos:[],videos:[]},
+{n:"05",cat:"Distance & Detection",title:"IR, Ultrasonic Sensor Integration",done:true,learn:["HC-SR04: Trig and Echo pins","Distance = (echo time × speed of sound) / 2","Live distance on the Serial Monitor with an LED indicator"],photos:[],videos:[]},
+{n:"06",cat:"Application Development",title:"Basic of App Building",done:false,learn:["Fundamentals of building a mobile app that can interact with the embedded system"],photos:[],videos:[]},
+{n:"07",cat:"System Integration",title:"App Integration With Embedded Platform",done:false,learn:["Exchanging commands and data between the app and the embedded platform"],photos:[],videos:[]},
+{n:"08",cat:"Cloud",title:"Cloud Integration With App",done:false,learn:["Connecting the app to cloud services for handling or exchanging data"],photos:[],videos:[]},
+{n:"09",cat:"Digital Fabrication",title:"Basic of 3D Printing",done:false,learn:["Basic concepts and workflow of 3D printing"],photos:[],videos:[]},
+{n:"10",cat:"Capstone",title:"Project",done:false,learn:["Combining embedded, sensor, app, cloud and fabrication skills in one project"],photos:[],videos:[]},
+{n:"11",cat:"Communication",title:"Seminar / Presentation",done:false,learn:["Presenting the project, process, results and learning outcomes clearly"],photos:[],videos:[]}
+];
+
+function esc(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
+function openLB(s,c){document.getElementById('lbImg').src=s;document.getElementById('lbCap').textContent=c||'';document.getElementById('lightbox').style.display='flex'}
+function slot(item,video){
+  var s=el('div','slot'),m=document.createElement(video?'video':'img');
+  m.src=item.src;
+  if(video){m.controls=true;m.preload='metadata';m.setAttribute('playsinline','')}
+  else{m.alt=item.caption;m.loading='lazy';m.onclick=function(){openLB(item.src,item.caption)}}
+  m.onerror=function(){s.style.display='none'};
+  var c=el('p','cap');c.textContent=item.caption;s.appendChild(m);s.appendChild(c);return s}
+
+var nb=document.getElementById('notesBox');
+NOTES.forEach(function(n,i){
+  var d=el('details','topic'),h='<summary>'+esc(n.t)+'</summary><div class="tbody">';
+  h+=n.p.map(function(x){return '<p>'+esc(x)+'</p>'}).join('');
+  if(n.c)h+='<h4>Code</h4><pre>'+esc(n.c)+'</pre>';
+  h+='<div class="viva"><b>Quick viva questions</b><ol>'+n.v.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ol></div></div>';
+  d.innerHTML=h;if(i===0)d.open=true;nb.appendChild(d)});
+
+var mod=document.getElementById('modules'),pg=document.getElementById('photoGrid'),vg=document.getElementById('videoGrid'),cnt=0,done=0;
+function refresh(){
+  document.getElementById('noP').style.display=pg.children.length?'none':'block';
+  document.getElementById('noV').style.display=vg.children.length?'none':'block';
+  document.getElementById('cMedia').textContent=pg.children.length+vg.children.length}
+MODULES.forEach(function(m){
+  if(m.done)done++;
+  var d=el('div','module'+(m.done?' done':'')),
+  h='<span class="status'+(m.done?'':' na')+'">'+(m.done?'✔ Practical done':'Notes')+'</span><div class="num">'+m.n+' • '+m.cat+'</div><h3>'+m.title+'</h3><ul>'+m.learn.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>';
+  (m.code||[]).forEach(function(c){h+='<h4>💻 '+c.title+'</h4><pre>'+esc(c.text)+'</pre>'});
+  d.innerHTML=h;
+  if(m.photos.length){var g=el('div','grid');m.photos.forEach(function(p){g.appendChild(slot(p));pg.appendChild(slot(p))});d.appendChild(el('h4',null,'🖼️ Photos'));d.appendChild(g)}
+  if(m.videos.length){var g2=el('div','grid');m.videos.forEach(function(v){g2.appendChild(slot(v,true));vg.appendChild(slot(v,true))});d.appendChild(el('h4',null,'🎬 Videos'));d.appendChild(g2)}
+  mod.appendChild(d)});
+document.getElementById('cDone').textContent=done;refresh();
+
+document.getElementById('addMedia').addEventListener('change',function(e){
+  Array.prototype.forEach.call(e.target.files,function(f){
+    var u=URL.createObjectURL(f),isV=f.type.indexOf('video')===0;
+    (isV?vg:pg).appendChild(slot({src:u,caption:f.name},isV))});refresh()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')document.getElementById('lightbox').style.display='none'});
+</script>
+</body>
+</html>
